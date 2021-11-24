@@ -1,0 +1,462 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.post {
+    position: relative;
+    border: none;
+    box-shadow: 0px 0px 8px #222;
+    width: 35%;
+    margin: 25px auto;
+    padding: 25px;
+    height: auto;
+}
+.break {
+    position: relative;
+    margin: 25px auto;
+    width: 70%;
+    box-shadow: 0px 0px 8px #222;
+    text-align: center;
+    font-size: 33px;
+}
+
+.post .love{
+    color: crimson;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.post .upBar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post .upBar .left-side {
+    text-align: center;
+}
+
+.post .love-form button {
+    border: none;
+    color: crimson;
+    background-color: transparent;
+    font-size: 20px;
+    outline: none;
+}
+/* search for people */
+.search {
+    position: fixed;
+    width: 31%;
+    height: 82vh;
+    bottom: 5%;
+    right: 0%;
+    overflow-y: scroll;
+    z-index: 99999;
+    box-shadow: 0px 0px 4px #222;
+    padding: 25px;
+}
+
+.search .up form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search .people {
+    width: 100%;
+    margin-top: 15px;
+    height: 90%;
+}
+
+.search .people .users .down {
+    border: 1px solid crimson;
+}
+.search .people .users {
+    width: 100%;
+    height: 100px;
+    border: 1px solid silver;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.search .people .users .left-side {
+    text-align: center;
+    width: 25%;
+}
+.search .people .users .left-side img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.search .people .users .right-side {
+    width: 70%;
+    height: 30px;
+    display: inline;
+    justify-content: space-between;
+}
+
+
+.search .people .users:hover {
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 8px silver;
+}
+
+.search input {
+    padding: 7px;
+    border: none;
+    box-shadow: 0px 0px 4px #aaa;
+    outline: none;
+    width: 75%;
+}
+
+.search button {
+    width: 20%;
+    border: none;
+    /* padding: 8px; */
+    border: 1px solid crimson;
+    color: #fff;
+    background-color: crimson;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search button:hover {
+    color: crimson;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+/* side bar info */
+
+.side {
+    position: fixed;
+    width: 30%;
+    bottom: -15%;
+    left: 15%;
+    height: 400px;
+    transform: translate(-50%,-50%);
+    padding: 25px;
+    z-index: 999;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: 0px 0px 2px #000;
+}
+
+.side .up {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+
+}
+
+.side .up img {
+    border-radius: 50%;
+}
+
+
+.mid {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.side .down {
+    margin-top: 10px;
+    width: 55%;
+    display: flex;
+    margin: auto;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.side .down a {
+    text-decoration: none;
+    background-color: crimson;
+    color: #fff;
+    padding: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid crimson;
+}
+
+.side .down a:hover {
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: crimson;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:1386px){
+    .post {
+        width: 50%;
+    }
+}
+
+@media (max-width:438px) {
+    .post {
+        width: 100%;
+    }
+}
+
+@media (max-width:620px) {
+    .post {
+        width: 80%;
+    }
+}
+
+
+
+.post textarea {
+    width: 100%;
+    resize: vertical;
+    outline: none;
+    padding: 15px;
+    font-size: 25px;
+    height: auto;
+    border: none;
+}
+
+.post .btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post .btns .send {
+    border: none;
+    background-color: crimson;
+    color: #fff;
+    padding: 7px;
+    font-size: 20px;
+    outline: none;
+}
+/*  */
+.post .btns .more li .list li button {
+    border: none;
+    background: #fff;
+    padding: 7px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+/* list  */
+.post .view {
+    list-style: none;
+    font-weight: 900;
+    color: crimson;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.view .list {
+    position: relative;
+    right: 0;
+    width: 85px;
+    list-style: none;
+    box-shadow: 0px 0px 4px #222;
+    height: 70px;
+    background: #fff;
+    text-align: center;
+    overflow-y: hidden;
+    z-index: 2;
+    height: 0;
+    transition: all 0.3s ease;
+}
+
+.view .list.view {
+    transition: all 0.3s ease;
+    padding: 7px 0px 7px 0px;
+    height: 72px;
+}
+.view .list li {
+    width: 100%;
+}
+.view .list li button {
+    border: none;
+    width: 100%;
+    padding:8px;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+} 
+
+.view .list li button:hover {
+    box-shadow: 0px 0px 4px red;
+    color: crimson;
+    transition: all 0.3s ease;
+}
+
+.post .btns .more li .list li button:hover {
+    background: transparent;
+    background-color: crimson;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.post .btns .more li  {
+    cursor: pointer;
+}
+
+.post .btns .drop button{
+    background-color: transparent;
+    color: crimson;
+    border: 1px solid crimson;
+    outline: none;
+    padding: 7px;
+}
+
+.post .btns .drop .men{
+    padding: 0px;
+    text-align: center;
+    background-color: #aaa;
+    z-index: 999;
+}
+
+.post .btns .drop .men li {
+    padding: 7px;
+    width: 100%;
+}
+
+.post .btns .drop .men li button {
+    width: 100%;
+    color: #fff;
+    background-color: crimson;
+    transition: all 0.3s ease;
+    border: 1px solid crimson;
+}
+
+.post .btns .drop .men li button:hover {
+    background-color: transparent;
+    color: crimson;
+    transition: all 0.3s ease;
+}
+
+
+
+/* comment side */
+
+.post label {
+    display: none;
+}
+
+.post .comment {
+    display: flex;
+    /* width: 100%; */
+}
+
+.post .comment input {
+    flex: 1 1 auto;
+    outline: none;
+    padding: 7px;
+    border: 1px solid silver;
+    padding-left: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 3rem;
+    width: 100%;
+}
+
+.post .comment .comment {
+    flex: 1 1 auto;
+    outline: none;
+    padding: 7px;
+    border: 1px solid silver;
+    padding-left: 50px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 3rem;
+    width: 100%;
+}
+
+.post .comment img {
+    position: absolute;
+    margin-top: 1%;
+    margin-left: 10px;
+}
+
+.post .comment button {
+    padding: 7px;
+    border: none;
+    background-color: crimson;
+    color: #fff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    outline: none;
+}
+/* end comment */
+
+
+/* dots menu */
+
+.post .menu {
+    color: #222;
+    position: absolute;
+    cursor: pointer;
+}
+
+.post .menu ul {
+    background: #fff;
+    padding-top: 5px;
+    /* padding-top: 7px;
+    padding-bottom: 7px; */
+    list-style: none;
+    box-shadow: 0px 0px 12px #777;
+    height: 0px;
+    width: 0px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: absolute;
+    right: 0px;
+
+}
+
+.post .menu ul li {
+    text-align: center;
+    padding: 7px;
+    width: 100%;
+}
+
+.post .menu ul li a {
+    text-decoration: none;
+    width: 100%;
+    color: #222;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+.post .menu ul li:hover {
+    background: #999;
+    transition: all 0.3s ease;
+}
+
+.post .menu .ulist.view {
+    height: 70px;
+    width: 80px;
+    transition: all 0.3s ease;
+}

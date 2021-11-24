@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Djangp Blog | Update Profile image
+{% endblock  %}
+
+
+{% block content %}
+    <form method="POST" class="container" style="margin-top: 25px;" enctype="multipart/form-data">
+        {% csrf_token %}
+        <img src="{{user.profile.fg.url}}" style="width: 150px;height: 150px;border-radius: 50%;">
+        {% include 'includes/form.html' %}
+        <button class="btn btn-success" type="submit">Submit</button>
+        <a href="{% url 'del_img' user.pk %}" class="btn btn-danger">Delete Image</a>
+    </form>
+{% endblock  %}

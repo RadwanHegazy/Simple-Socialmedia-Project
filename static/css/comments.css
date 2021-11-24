@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+
+.user {
+    position: relative;
+    width: 50%;
+    margin: 25px auto;
+    box-shadow: 0px 0px 8px #222;
+    padding: 25px;
+}
+
+.info {
+    width: 50%;
+    position: relative;
+    margin: 25px auto;
+    box-shadow: 0px 0px 8px gold;
+    padding: 25px;
+}
+.user .up {
+    width: 100%;
+    display: flex;
+    justify-content: space-between  ;
+}
+
+.user .up .left-side {
+    text-align: center;
+}
+
+.user .up .right-side .menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.user .up .right-side .menu .ull {
+    list-style: none;
+    text-align: center;
+    box-shadow: 0px 0px 5px #222;
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    height: 0px;
+    transition: all 0.3s ease;
+}
+
+.user .up .right-side .menu .ull.view {
+    padding: 5px 0px 0px 5px;
+    height: 67px;
+    transition: all 0.3s ease;
+}
+
+.user .up .right-side .menu li {
+    padding: 7px;
+}
+
+.user .up .right-side .menu li a {
+    padding: 7px;
+    width: 100%;
+}
+
+/* overlay for update comments */
+
+
+.overlay {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background: rgba(34, 34, 34, 0.459);
+    left: -100%;
+    transition: all 0.3s ease;
+}
+
+.overlay.open {
+    left: 0%;
+    transition: all 0.3s ease;
+}
+
+.overlay .update-form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 25px;
+    box-shadow: 0px 0px 8px #555;
+    background: #fff;
+    width: 30%;
+}
+
+.overlay .update-form .up {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overlay .update-form .up i {
+    /* margin-top: 10px;0 */
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.overlay .update-form .up i:hover {
+    background: silver;
+    transition: all 0.3s ease;
+}
+
+@media (max-width:500px) {
+    .overlay .update-form {
+        width: 90%;
+    }
+}

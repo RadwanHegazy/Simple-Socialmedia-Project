@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Django Blog | Home
+{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+    <!-- search for people -->
+    <div class="search">
+        <div class="up">
+            <form action="{% url 'FindPeople' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Search for friends" name="friend" id="">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="people">
+
+            
+            {% for i in allusers %}
+                <div class="users">
+                    <div class="left-side">
+                        <img src="{{i.profile.fg.url}}" alt="">
+                        <a href="{% url 'view_user' i.username  %}">{{i.first_name}}</a>
+                    </div>
+                    <div class="right-side">
+                        <p>{{i.date_joined}}</p>
+                        <p>{{i.user.followers.all.count}} Followers </p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!-- end search -->
+    <!-- start info side bar -->
+    {% if request.user.is_authenticated%}
+        <div class="side">
+            <div class="up">
+                <img src="{{request.user.profile.fg.url}}" width="100" height="100">
+                <h3>{{request.user.username}}</h3>
+                <p class="text-muted"> @{{request.user.first_name}} {{request.user.last_name}}</p>
+            </div>
+            <div class="mid">
+                <p>{{fols.count}} Followers</p>
+                <p>{{UserPosts.count}} Posts</p>
+            </div>
+            <div class="down">
+                <a href="{% url 'update_user' user.id %}" >Edit Profile</a>
+                <a href="{% url 'update_img' user.id %}">Update image</a>
+            </div>
+        </div>
+    {% endif %}
+    <!-- end info side bar -->
+    <div class="post">
+        <form method="POST" action="{% url 'posts' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <textarea name="post_cont" required placeholder="what did you think" id="" cols="1" rows="1"></textarea>
+            <input type="file" accept="video/*" name="video" id="file" hidden>
+            <input type="file" accept="image/*" name="image" id="UploadImage" hidden>
+            <hr>
+                <p id="img" style="color: rgb(0, 255, 0);font-weight: 900;"></p>
+                <p id="vid" style="color: rgb(0, 255, 0);font-weight: 900;"></p>
+            <div class="btns">
+                <button type="submit" class="fas fa-plus send"> Post</button>
+                <li class="view" id="view">more <i class="fas fa-arrow-down"></i>
+                    <ul class="list" id="list">
+                        <li><button type="button" class="fas fa-image" id="imgBtn"> Photo</button></li>
+                        <li><button type="button" class="fas fa-video" id="more"> Video</button></li>
+                    </ul>
+                </li>
+                <script>
+                    var listBtn = document.getElementById('view')
+                    listBtn.onclick = function(){
+                        document.getElementById('list').classList.toggle('view')
+                    }
+                </script>
+                
+            </div>
+                <!-- end of dropdown -->
+            <script>
+                var btn = document.getElementById('more')
+                btn.onclick = function(){
+                    document.getElementById('file').click()
+
+                }
+    
+                var imgBtn = document.getElementById('imgBtn')
+                imgBtn.onclick = function(){
+                    document.getElementById('UploadImage').click()
+                }
+
+                setInterval(function(){
+
+                    var vidCont = $('#file').val()
+                    if (vidCont) {
+                        $('#vid').text('video has been add successfully ')
+                    }
+
+                    var imgCont = $('#UploadImage').val()
+                    if (imgCont) {
+
+                        $('#img').text('photo has been add successfully')
+                    }
+                })
+            </script>
+            </form>
+        </div>
+
+        {% for post in posts %}
+        <div class="post">
+            <div class="upBar">
+                <div class="left-side">
+                    <img src="{{post.user.profile.fg.url}}" style="width: 50px;height: 50px;border-radius: 50%;" alt=""> 
+                    <a href="{% url 'view_user' post.user.username %}">{{post.user}}</a>
+                </div>
+                <div class="right-side">
+                    {% if request.user == post.user %}
+                    <i class="fas fa-ellipsis-h menu" id="dots">
+                        <ul class="ulist" id="ulist">
+                            <li><a href="{% url 'edit_posts' post.id %}">Edit</a></li>
+                            <li><a href="{% url 'delete' post.id %}">Delete</a></li>
+                        </ul>
+                    </i>
+                    {% else %}
+                        <p class="text-muted">{{post.date}}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <hr>
+            <p>{{post.title}}</p>
+            {% if post.image %}
+            <img src="{{post.image}}" width="100%" height="auto">
+            {% endif %}
+            {% if post.video %}
+            <video width="100%" height="auto" controls>
+                <source src="{{post.video}}" type="video/mp4">
+            </video>
+            {% endif %}
+            <hr>
+            <form action="{% url 'comment' post.id %}" method="POST" id="{{post.id}}" class="CommentForm">
+                {% csrf_token %}
+                <div class="comment">
+                    <!-- {% include 'includes/form.html' %} -->
+                    {% if request.user.is_authenticated %}
+                    <input type="text" placeholder="Comment ..." name="comment" id="comment_{{post.id}}" class="comment">
+                        <img src="{{request.user.profile.fg}}" alt="None" width="35px" height="35px" style="border-radius: 50%;">
+                        {% else %}
+                        <input type="text" placeholder="Comment ..." name="comment" id="comment_{{post.id}}" class="comment-no-user">
+                        {% endif %}
+                        <p>{{ message }}</p>
+                        <button class="com" type="submit">Send</button>
+                    </div>
+                </form>
+                <hr>
+                <form action="{% url 'love' post.id %}" method="POST" class="love-form" id="{{post.id}}">
+                {% csrf_token %}
+                {% if request.user in post.lovers.all %}
+                <button type="submit" class="fas fa-heart btn-{{post.id}}"> {{post.lovers.count}}</button>
+                {% else %}
+                <button type="submit" class="far fa-heart btn-{{post.id}}"> {{post.lovers.count}}</button>
+                {% endif %}
+                <a href="{% url 'view_comments' post.id %}" style="font-size: 20px;margin-left: 15px;text-decoration: none;"><i class="fas fa-comment"></i> Comments</a>
+            </form>
+        </div>
+        {% endfor %}
+        <script>
+
+            $('#dots').click(function(){
+                $('#ulist').toggleClass('view')
+            })
+
+        </script>
+        
+        
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+        <script>
+            $('.CommentForm').submit(function(e){
+                e.preventDefault()
+                var PostId = $(this).attr('id')
+                var url = $(this).attr('action')
+                var comment = $(`#comment_${PostId}`).val()
+
+                if (comment === '') {
+                    swal('Error','Please Enter Your Comment','error')
+                }
+
+                else {
+
+                    $.ajax({
+                        type:'POST',
+                        url:url,
+                        data:{
+                            'comment':comment,
+                            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+                        },
+                        success:function(data){
+                            swal('Done','Your Comment has been send ','success')
+                            $(`#comment_${PostId}`).val('')      
+                        },
+                        error:function(eror) {
+                            swal('Error','Please Enter Your Comment','error')
+                        }
+                    })
+                }
+            }   )
+        </script>
+        {% endblock  %}

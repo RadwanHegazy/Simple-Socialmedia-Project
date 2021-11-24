@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bar.css' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <title>{% block title %}   {% endblock  %}</title>
+</head>
+<body>
+    <div class="bar" style="position: fixed;top: 0;">
+        <div class="left-side">
+            <h1>Django Blog</h1>
+        </div>
+        <div class="right-side">
+            <i class="fas fa-bars" id="bars"></i>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'noti' %}">Notifications</a></li>
+                    <li><a href="{% url 'pas' %}">Change Password</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="options" id="options">
+        <div class="links" id="data">
+            <ul>
+                
+                    <li>
+                        <form action="{% url 'FindPeople' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Search For Friends" name="friend" id=""><button class="fas fa-search"></button>
+                        </form>
+                    </li>
+                
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'pas' %}">Change Password</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+
+    <div style="width: auto;height: auto;margin-top: 100px;" class="Max">
+        {% block content %}
+            
+        {% endblock content %}
+    </div>
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+
+        $('#bars').click(function(){
+            document.getElementById('options').classList.toggle('view')
+            document.getElementById('data').classList.toggle('view')
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+form{
+    width: 400px;
+    height: 400px;
+}
+
+.login-form {
+    position: relative;
+    margin: 300px auto;
+    width: 40%;
+    padding: 25px;
+    background-color: #ddd;
+}
+
+.login-form input {
+    width: 100%;
+    margin-top: 15px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    outline: none;
+}
+
+.login-form .down {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.login-form .down button {
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.login-form .down .log {
+    background-color: crimson;
+    color: #fff;
+}
+
+.login-form .down .sign {
+    background-color: #fff;
+    color: crimson;
+    border: 1px solid crimson;
+}
+
+.login-form .user {
+    position: absolute;
+    transition:all 0.3s ease;
+    background-color: #ddd;
+    padding: 7px;
+    font-size: 30px;
+    width: 60px;
+    text-align: center;
+    height: 60px;
+    left: 0;
+    top: -60px;
+    color: crimson;
+}
+
+.login-form .user.move {
+    width: 100%;
+    color: crimson;
+    background-color: #eee7;
+    transition:all 0.3s ease;
+}
+
+@media (max-width:1000px) {
+    .login-form {
+        width: 90%;
+    }
+
+}
+
+@media (max-width:481px) {
+    .login-form {
+        width: 90%;
+    }
+}
+

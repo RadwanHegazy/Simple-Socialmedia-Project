@@ -1,0 +1,143 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+.bar {
+    position: relative;
+    z-index: 9999;
+    width: 100%;
+    background-color: crimson;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bar .right-side ul {
+    display: flex;
+    list-style: none;
+}
+
+.bar .right-side ul li {
+    margin-top: 15px;
+}
+
+.bar .right-side ul li a {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.bar .right-side ul li a:hover {
+    transition: all 0.3s ease;
+    color: crimson;
+    background: #fff;
+}
+
+.bar .right-side i {
+    display: none;
+    font-size: 28px;
+    margin-top: 15px;
+}
+
+.options {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    color: crimson;
+    background-color: #222;
+    bottom: 100%;
+    transition: all 0.8s ease;
+    overflow: hidden;
+
+}
+
+
+.options.view {
+    bottom: 0%;;
+    transition: all 0.3s ease;
+}
+
+
+.options .links {
+    position: fixed;
+    width: 90%;
+    left: 50%;
+    top: -15%;
+    transform: translate(-50%,-50%);
+    padding: 25px;
+    text-align: center;
+    transition: all 0.8s ease;
+    overflow: hidden;
+}
+
+.options .links ul {
+    list-style: none;
+}
+
+.options .links ul li {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.options .links ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 28px;
+}
+
+.options .links.view{
+    top: 50%;
+    transition: all 0.8s ease;
+}
+
+
+.options .links ul li form {
+    margin: auto;
+    display: flex;
+    width: 320px;
+    text-align: center;
+    padding: 15px;
+}
+.options .links ul li form input {
+    border: 1px solid #888;
+    padding: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.options .links ul li form button {
+    border: none;
+    color: white;
+    background-color: crimson;
+    width: 10%;
+    padding: 5px;
+}
+
+
+
+@media (max-width:1386px){
+    .side {
+        display: none;
+    }
+    .search {
+        display: none;
+    }
+}
+
+
+@media (max-width:746px) {
+    .bar .right-side ul  {
+        display: none;
+    }
+
+    .bar .right-side i {
+        display: block;
+    }
+}
+

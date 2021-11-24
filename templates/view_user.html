@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{Theuser.username}} Profile
+{% endblock  %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+        <div class="home">
+            {% if Theuser.profile.fg.url %}
+                <div class="userimg" style="width: 100%;text-align: center;">
+                    <img src="{{Theuser.profile.fg.url}}" alt="image" style="width: 200px;height: 200px;border-radius: 50%;">
+                </div>
+            {% endif %}
+            <h1 class="text-center">{{Theuser.username}}</h1>
+            <p class="text-muted text-center">@{{Theuser.first_name}} {{Theuser.last_name}}</p>
+            <div class="data">
+                <p>{{followers.count}} Followers</p>
+                <p>{{posts.count}} Post</p>
+            </div>
+            <div class="btns">
+                {% if request.user in followers.all %}
+                    <a href="{% url 'follow' Theuser.pk %}" >Un Follow</a>
+                {% else %}
+                    <a href="{% url 'follow' Theuser.pk %}">Follow</a>
+                {% endif %}
+            </div>
+        </div>
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        {% if posts  %}
+            <div class="break">{{Theuser}} Posts</div>
+        {% endif %}
+        {% for post in posts %}
+        <div class="post">
+            <div class="upBar">
+                <div class="left-side">
+                    <img src="{{post.user.profile.fg.url}}" style="width: 50px;height: 50px;border-radius: 50%;" alt=""> 
+                    <a href="{% url 'view_user' post.user.username %}">{{post.Theuser}}</a>
+                </div>
+                <div class="right-side">
+                    <p class="text-muted">{{post.date}}</p>
+                </div>
+            </div>
+            <hr>
+            {% if post.title %}
+                <h1>{{post.title}}</h1>
+            {% endif %}
+            <p>{{post.subject}}</p>
+            {% if post.video %}
+                <video width="100%" height="auto" controls>
+                    <source src="{{post.video.url}}" type="video/mp4">
+                </video>
+            {% endif %}
+            {% if post.image %}
+                <img src="/{{post.image}}" width="100%" height="auto">
+            {% endif %}
+            <hr>
+            <form action="{% url 'love' post.id %}" method="POST" class="love-form" id="{{post.id}}">
+                {% csrf_token %}
+                {% if request.Theuser in post.lovers.all %}
+                    <button type="submit" class="fas fa-heart btn-{{post.id}}"> {{post.lovers.count}}</button>
+                {% else %}
+                    <button type="submit" class="far fa-heart btn-{{post.id}}"> {{post.lovers.count}}</button>
+                {% endif %}
+                <a href="{% url 'view_comments' post.id %}" style="font-size: 20px;margin-left: 15px;text-decoration: none;"><i class="fas fa-comment"></i> Comments</a>
+            </form>
+        </div>
+    {% endfor %}
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+{% endblock  %}

@@ -1,0 +1,37 @@
+{% load widget_tweaks %}
+
+
+{% if form.non_field_errors %}
+    {% for error in  form.non_field_errors%}
+    
+    {% if forloop.last %}<div class="alert alert-danger" role="alert">
+        {{error}}
+      </div>{% endif %}
+
+    {% endfor %}
+{% endif %}
+
+{% for i in form %}
+    <div class="form-group">
+        {{i.label_tag}}
+        {% if form.is_bound %}
+            {% if i.errors %}
+                {% render_field i class='form-control is-invalid' %}
+                {% for error in i.errors %}
+                    <div class="invalid-feedback">{{error}}</div>
+                {% endfor %}
+            {% else %}
+            {% render_field i class='form-control is-valid' %}
+            {% endif %}
+        {% else %}
+        {% render_field i class='form-control' %}
+
+        {% endif %}
+        
+    </div>
+    {% if i.help_text %}
+    <small class="form-text text-muted">
+        {{i.help_text}}
+    </small>
+    {% endif %}
+    {% endfor %}

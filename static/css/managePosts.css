@@ -1,0 +1,119 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#id_image {
+    display: none;
+}
+
+#id_video {
+    display: none;
+}
+
+label {
+    display: none;
+}
+
+#id_title{
+    display: none;
+}
+
+.down {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.down .sub {
+    border: none;
+    padding: 10px;
+    color: #fff;
+    background-color: crimson;
+    border: 1px solid crimson;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.down .sub:hover {
+    background-color: transparent;
+    transition: all 0.3s ease;
+    color: crimson;
+}
+
+.down .more {
+    padding: 10px;
+    border: 1px solid red;
+    color: crimson;
+    background-color: transparent;
+    outline: none;
+}
+
+
+.op {
+    position: fixed;
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid crimson;
+    padding: 25px;
+    top: 200%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 300px;
+    transition: all 0.6s ease;
+    overflow: hidden;
+}
+
+.op.view {
+    transition: all 0.3s ease;
+    top: 50%;
+}
+
+.op .data {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    text-align: center;
+}
+
+.op .data ul {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+}
+
+.op .data ul li  {
+    padding: 20px;
+}
+
+.op .data ul li button {
+    border: none;
+    color: crimson;
+    background-color: #fff;
+    border: 1px solid crimson;
+    padding: 7px;
+    width: 100%;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.op .data ul li button:hover {
+    background-color: crimson;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+#close {
+    background-color: crimson;
+    color: #fff;
+}
+
+@media (max-width:500px) {
+    .op {
+        width: 100%;
+
+    }
+}

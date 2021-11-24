@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Django Blog | Manage Posts
+{% endblock  %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/managePosts.css' %}">
+    <form class="container" style="margin-top: 25px;" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <p id="imgAdd" style="color: rgb(0, 255, 0);font-weight: 900;"></p>
+        <p id="vidAdd" style="color: rgb(0, 255, 0);font-weight: 900;"></p>
+        <div class="down">
+            <button class="sub" type="submit">Submit</button>
+            <button class="more" type="button" id="more">More</button>
+            <div class="op" id="op">
+                <div class="data">
+                    <ul>
+                        <li><button type="button" id="image">Add image</button></li>
+                        <li><button type="button" id="video">Add video</button></li>
+                        <li><button type="button" id="close">close</button></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+    <script>
+
+        var close = document.getElementById('close')
+        close.onclick = function(){
+            document.getElementById('op').classList.remove('view')
+        }
+        var btn = document.getElementById('more')
+        btn.onclick = function(){
+            document.getElementById('op').classList.toggle('view')
+        }
+
+        var image = document.getElementById('image')
+        image.onclick = function(){
+            document.getElementById('id_image').click()
+        }
+        
+        var vid = document.getElementById('video')
+        vid.onclick = function(){
+            document.getElementById('id_video').click()
+        }
+
+        
+        setInterval(
+            function(){
+
+                var imgValue = document.getElementById('id_image').value
+                $('#imgAdd').text(imgValue)
+
+                var vidValue = document.getElementById('id_video').value
+                $('#vidAdd').text(vidValue)
+            }            
+        )
+    </script>
+{% endblock  %}

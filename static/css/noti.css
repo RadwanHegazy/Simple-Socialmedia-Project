@@ -1,0 +1,45 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.user {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    box-shadow: 0px 0px 12px #ccc;
+    margin-top: 20px;
+}
+
+.user .up .img {
+    text-align: center;
+}
+.user .up img {
+    width: 100px;
+    height: 100px;
+
+}
+
+.user .up {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user .del{
+    position: absolute;
+    right: 0;
+    /* z-index: ; */
+    font-size: 20px;
+    background-color: red;
+    color: white;
+    width: 40px;
+    text-align: center;
+    bottom: 0;
+}
+
+.user .del a {
+    color: #fff;
+    text-decoration: none;
+}

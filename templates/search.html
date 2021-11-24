@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Find New People
+{% endblock  %}
+
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/find_users.css' %}">
+    {% if not users %}
+        <div class="users">
+            <h1>No Users Found !</h1>
+        </div>
+    {% endif %}
+    {% for i in users %}
+
+    <div class="users">
+        <div class="left-side">
+            <img src="{{i.profile.fg.url}}" width="100" height="100" style="border-radius: 50%;" alt="">
+            <br>
+            <a href="{% url 'view_user' i.username %}">{{i.username}}</a>
+            <br>
+            <p class="text-muted">@{{i.first_name}} {{i.last_name}}</p>
+        </div>
+        <br>
+        <div class="right-side">
+            <div class="up">
+                <a href="{% url 'follow' i.pk %}">{% if request.user in i.user.followers.all %}UnFollow{% else %}Follow{% endif %}</a>
+                <p>{{i.user.followers.all.count}} Followers</p>
+            </div>
+            <div class="down">
+                <p class="last-seen">Joined at : {{i.date_joined}}</p>
+                <br>
+                <p>Last seen : {{i.last_login}}</p>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+{% endblock  %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Django Blog | Login
+{% endblock  %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <form method="POST" class="container" style="margin-top: 25px;">
+        
+        {% csrf_token %}
+        <div class="login-form">
+            {% for val, error in form.errors.items %}
+                <div class="msg">
+                    <div class="alert alert-danger">
+                    {% for new in error %}
+                        {{new}}
+                    {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="user" id="user">
+                <i class="fas fa-user"></i>
+            </div>
+            <input type="text"  id="inpas" placeholder="Username" name="username">
+            <input type="password"  placeholder="Password" name="password">
+            <div class="down">
+                <button class="log">Login</button>
+                <button class="sign" type="button" onclick="window.location.href='/signup'">Signup</button>
+            </div>
+
+        </div>
+
+        <script>
+            var ac = document.getElementById('inpas');
+            ac.onfocus = function(){
+                document.getElementById('user').classList.toggle('move');
+            }
+            
+
+
+        </script>
+        <!-- {% include 'includes/form.html' %} -->
+        <!-- <button class="btn btn-success">Login</button> -->
+    </form>
+{% endblock  %}

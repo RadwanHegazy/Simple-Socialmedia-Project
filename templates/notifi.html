@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Django Blog | Notifications {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/noti.css' %}">
+
+<div class="container">
+{% if not nots %}
+<div class="user">
+    <h3>No Notifications Right Now</h3>
+</div>
+{% endif %}
+
+{% if nots %}
+    <h1 class="alert alert-primary"> <i class="fas fa-bell"></i> {{nots.count}}</h1>
+{% endif %}
+{% for i in nots%}
+        <div class="user">
+            <div class="del">
+                <a href="{% url 'del_noti' i.id %}">X</a>
+            </div>
+            <div class="up">
+                <div class="img">
+                    <img src="{{i.from_user.profile.fg.url}}" alt=""><br>
+                    <a href="{% url 'view_user' i.from_user %}">{{i.from_user}}</a>
+                </div>
+                <div class="date">
+                    <p>{{i.date}}</p>
+                </div>
+            </div>
+            <hr>
+            <h3>{{i.msg}}</h3>
+        </div>
+        {% endfor %}
+</div>    
+
+{% endblock %}
